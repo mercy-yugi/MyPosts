@@ -1,9 +1,8 @@
 package com.yugi.mypost
 
+import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.yugi.mypost.databinding.PostListItemBinding
 
@@ -20,11 +19,16 @@ class PostAdapter(var PostList:List<Post>):RecyclerView.Adapter<PostViewHolder>(
             tvID.text=currentPost.id.toString()
             tvTitle.text=currentPost.title
             tvBody.text=currentPost.body
+            var context=holder.itemView.context
+            holder.binding.cvPost.setOnClickListener{
+                val intent=Intent(context,comments_activity::class.java)
+
+                intent.putExtra("POST_ID",currentPost.id)
+                context.startActivity(intent)
+            }
 
         }
-
     }
-
     override fun getItemCount(): Int {
      return PostList.size
     }

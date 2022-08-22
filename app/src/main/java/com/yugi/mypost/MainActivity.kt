@@ -2,6 +2,7 @@ package com.yugi.mypost
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yugi.mypost.databinding.ActivityMainBinding
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             if (response.isSuccessful){
                 var post=response.body()
                 Toast.makeText(baseContext,"fetched posts ${post!!.size}",Toast.LENGTH_LONG).show()
+                Log.d("Tag",post.toString())
                 binding.rvAdapt.layoutManager= LinearLayoutManager(baseContext)
                 binding.rvAdapt.adapter= PostAdapter(post)
 
